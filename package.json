@@ -19,5 +19,12 @@
   },
   "dependencies": {
     "@types/node": "^14.10.1"
-  }
+  },
+  "keywords": [
+    "c#",
+    "code",
+    "generation",
+    "typescript",
+    "node.js"
+  ]
 }
