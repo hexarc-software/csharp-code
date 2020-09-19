@@ -3,3 +3,4 @@ tests/
 tsconfig.json
 npm.build.sh
 npm.run.sh
+npm.publish.sh
