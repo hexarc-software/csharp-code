@@ -8,7 +8,7 @@ Microsoft C# source code generation based on the language document object model
 
 Generate Microsoft C# source files from any Node.js projects just using a simple and well-structured language document object model API.
 
-This package is designed for usage with TypeScript and provides extensive typings from C# document object model.
+This package is designed for usage with TypeScript and provides extensive typings for C# document object model.
 
 ## Setup
 Install with npm:
