@@ -1,0 +1,23 @@
+{
+  "name": "@hexarc/csharp-dom",
+  "version": "0.0.1",
+  "description": "Microsoft C# source code generation based on the language document object model",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "types": "lib/index.d.ts",
+  "author": "Max Koverdyaev",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hexarc-software/csharp-dom.git"
+  },
+  "homepage": "https://github.com/hexarc-software/csharp.git",
+  "devDependencies": {
+    "typescript": "^4.0.2"
+  },
+  "dependencies": {
+    "@types/node": "^14.10.1"
+  }
+}
