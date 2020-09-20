@@ -13,8 +13,9 @@ export function emitMany(writer: IndentedStringWriter, fields: Hexarc.CSharpDom.
 }
 
 export function emitOne(writer: IndentedStringWriter, field: Hexarc.CSharpDom.Field, isLast?: boolean) {
-  const { access, isStatic, assignment, type, name, value } = field;
+  const { access, isNew, isStatic, assignment, type, name, value } = field;
   const accessTokens = access ? [access, Delimiters.space] : [];
+  const newTokens = isNew ? [Keywords._new, Delimiters.space] : [];
   const staticTokens = isStatic ? [Keywords._static, Delimiters.space] : [];
   const assignmentTokens = assignment ? [assignment, Delimiters.space] : [];
   const resultTokens = [...TypeReferenceTokens.emit(type), Delimiters.space];
@@ -23,6 +24,7 @@ export function emitOne(writer: IndentedStringWriter, field: Hexarc.CSharpDom.Fi
   writer
     .outputTabs()
       .write(...accessTokens)
+      .write(...newTokens)
       .write(...staticTokens)
       .write(...assignmentTokens)
       .write(...resultTokens)

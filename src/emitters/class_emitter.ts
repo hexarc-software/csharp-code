@@ -25,16 +25,18 @@ export function emitOne(writer: IndentedStringWriter, _class: Hexarc.CSharpDom.C
 }
 
 function emitDefinition(writer: IndentedStringWriter, _class: Hexarc.CSharpDom.Class) {
-  const { access, isPartial, modifier, name, generics, baseClass } = _class;
+  const { access, isNew, isPartial, modifier, name, generics, baseClass } = _class;
   const accessTokens = access ? [access, Delimiters.space] : [];
-  const partialTokens = isPartial ? [Keywords.partial, Delimiters.space] : [];
+  const newTokens = isNew ? [Keywords._new, Delimiters.space] : [];
   const modifierTokens = modifier ? [modifier, Delimiters.space] : [];
+  const partialTokens = isPartial ? [Keywords.partial, Delimiters.space] : [];
   const genericTokens = GenericTokens.emit(generics)
   const baseClassTokens = baseClass ? TypeReferenceTokens.emit(baseClass) : [];
   const extensionTokens = baseClassTokens.length ? [Delimiters.space, Delimiters.colon, Delimiters.space, ...baseClassTokens] : [];
   writer
     .outputTabs()
       .write(...accessTokens)
+      .write(...newTokens)
       .write(...modifierTokens)
       .write(...partialTokens)
       .write(Keywords._class, Delimiters.space, name)

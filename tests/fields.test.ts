@@ -30,6 +30,11 @@ const codeUnit: Hexarc.CSharpDom.CodeUnit = {
         assignment: "const",
         name: "bar03",
         value: "3.0f"
+      }, {
+        access: "private",
+        isNew: true,
+        type: { namespace: "System", name: "Int32" },
+        name: "bar04"
       }]
     }]
   }]
