@@ -1,5 +1,7 @@
 import { IndentedStringWriter } from "../utils/indented_string_writer";
+import * as Keywords from "../tokens/keywords";
 import * as Delimiters from "../tokens/delimiters";
+import * as Signs from "../tokens/signs";
 import * as ScopeTokens from "../tokens/scope_tokens";
 import * as PropertyTokens from "../tokens/property_tokens";
 import * as TypeReferenceTokens from "../tokens/type_reference_tokens";
@@ -13,16 +15,21 @@ export function emitMany(writer: IndentedStringWriter, fields: Hexarc.CSharpDom.
 }
 
 export function emitOne(writer: IndentedStringWriter, field: Hexarc.CSharpDom.Field, isLast?: boolean) {
-  const { access, type, name } = field;
+  const { access, isStatic, assignment, type, name, value } = field;
   const accessTokens = access ? [access, Delimiters.space] : [];
-  const resultTokens = TypeReferenceTokens.emit(type);
+  const staticTokens = isStatic ? [Keywords._static, Delimiters.space] : [];
+  const assignmentTokens = assignment ? [assignment, Delimiters.space] : [];
+  const resultTokens = [...TypeReferenceTokens.emit(type), Delimiters.space];
+  const valueTokens = value != null ? [Delimiters.space, Signs.equal, Delimiters.space, value] : [];
   emitAttributes(writer, field);
   writer
     .outputTabs()
       .write(...accessTokens)
+      .write(...staticTokens)
+      .write(...assignmentTokens)
       .write(...resultTokens)
-      .write(Delimiters.space)
       .write(name)
+      .write(...valueTokens)
       .write(Delimiters.semicolon)
     .writeLineNoTabs();
   if (!isLast) writer.writeLine();

@@ -1,6 +1,6 @@
 {
   "name": "@hexarc/csharp-dom",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Microsoft C# source code generation based on the language document object model",
   "main": "lib/index.js",
   "scripts": {

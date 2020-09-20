@@ -1,2 +1,2 @@
-npx tsc tests/poco01.test.ts
-node tests/poco01.test.js
+npx tsc tests/fields.test.ts
+node tests/fields.test.js
