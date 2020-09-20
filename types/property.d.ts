@@ -5,6 +5,7 @@ declare namespace Hexarc.CSharpDom {
     readonly access?: "private" | "public" | "internal";
     readonly type: TypeReference;
     readonly name: string;
+    readonly value?: string;
   }
 
 }

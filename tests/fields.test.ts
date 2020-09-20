@@ -10,17 +10,26 @@ const codeUnit: Hexarc.CSharpDom.CodeUnit = {
     classes: [{
       access: "public",
       modifier: "sealed",
-      name: "Point2D",
+      name: "Foo",
       fields: [{
+        type: { namespace: "System", name: "Int32" },
+        name: "bar00"
+      }, {
         access: "public",
         type: { namespace: "System", name: "Int32" },
-        name: "X1",
+        name: "bar01",
         value: "2"
       }, {
         access: "public",
         isStatic: true,
         type: { namespace: "System", name: "Int32" },
-        name: "X2"
+        name: "bar02"
+      }, {
+        access: "public",
+        type: { namespace: "System", name: "Single" },
+        assignment: "const",
+        name: "bar03",
+        value: "3.0f"
       }]
     }]
   }]

@@ -14,11 +14,13 @@ const codeUnit: Hexarc.CSharpDom.CodeUnit = {
       properties: [{
         access: "public",
         type: { namespace: "System", name: "Single" },
-        name: "X"
+        name: "X",
+        value: "default"
       }, {
         access: "public",
         type: { namespace: "System", name: "Single" },
-        name: "Y"
+        name: "Y",
+        value: "default"
       }]
     }]
   }]

@@ -2,8 +2,6 @@ import { IndentedStringWriter } from "../utils/indented_string_writer";
 import * as Keywords from "../tokens/keywords";
 import * as Delimiters from "../tokens/delimiters";
 import * as Signs from "../tokens/signs";
-import * as ScopeTokens from "../tokens/scope_tokens";
-import * as PropertyTokens from "../tokens/property_tokens";
 import * as TypeReferenceTokens from "../tokens/type_reference_tokens";
 import * as AttributeEmitter from "./attribute_emitter";
 

@@ -1,4 +1,5 @@
 import { IndentedStringWriter } from "../utils/indented_string_writer";
+import * as Signs from "../tokens/signs";
 import * as Delimiters from "../tokens/delimiters";
 import * as ScopeTokens from "../tokens/scope_tokens";
 import * as PropertyTokens from "../tokens/property_tokens";
@@ -13,10 +14,11 @@ export function emitMany(writer: IndentedStringWriter, properties: Hexarc.CSharp
 }
 
 export function emitOne(writer: IndentedStringWriter, property: Hexarc.CSharpDom.Property, isLast?: boolean) {
-  const { access, type, name } = property;
+  const { access, type, name, value } = property;
   const accessTokens = access ? [access, Delimiters.space] : [];
   const resultTokens = TypeReferenceTokens.emit(type);
   const bodyTokens = emitBody();
+  const valueTokens = value != null ? [Delimiters.space, Signs.equal, Delimiters.space, value, Delimiters.semicolon] : [];
   emitAttributes(writer, property);
   writer
     .outputTabs()
@@ -26,6 +28,7 @@ export function emitOne(writer: IndentedStringWriter, property: Hexarc.CSharpDom
       .write(name)
       .write(Delimiters.space)
       .write(...bodyTokens)
+      .write(...valueTokens)
     .writeLineNoTabs();
   if (!isLast) writer.writeLine();
 }
