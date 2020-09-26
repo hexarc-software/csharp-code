@@ -4,24 +4,22 @@ import * as Delimiters from "../tokens/delimiters";
 import * as GenericTokens from "../tokens/generic_tokens";
 import * as ScopeTokens from "../tokens/scope_tokens";
 import * as TypeReferenceTokens from "../tokens/type_reference_tokens";
-import * as AttributeEmitter from "./attribute_emitter";
-import * as FieldEmitter from "./field_emitter";
-import * as PropertyEmitter from "./property_emitter";
-import * as MethodEmitter from "./method_emitter";
+import * as TypeEmitter from "./type_emitter";
 
 
-export function emitMany(writer: IndentedStringWriter, classes: Hexarc.CSharpDom.Class[] | undefined) {
+export function emitMany(writer: IndentedStringWriter, classes: Hexarc.CSharpDom.Class[] | undefined, isFirst?: boolean) {
   if (classes == null || classes.length === 0) return;
+  if (!isFirst) writer.writeLine();
   classes.forEach((c, i, arr) => emitOne(writer, c, i === arr.length - 1));
 }
 
 export function emitOne(writer: IndentedStringWriter, _class: Hexarc.CSharpDom.Class, isLast?: boolean) {
-  emitAttributes(writer, _class);
+  TypeEmitter.emitAttributes(writer, _class.attributes);
   emitDefinition(writer, _class);
-  emitFields(writer, _class);
-  emitProperties(writer, _class);
-  emitMethods(writer, _class);
-  emitEnd(writer, isLast);
+  TypeEmitter.emitFields(writer, _class.fields);
+  TypeEmitter.emitProperties(writer, _class.properties, _class.fields);
+  TypeEmitter.emitMethods(writer, _class.methods, _class.properties)
+  TypeEmitter.emitEnd(writer, isLast);
 }
 
 function emitDefinition(writer: IndentedStringWriter, _class: Hexarc.CSharpDom.Class) {
@@ -45,31 +43,4 @@ function emitDefinition(writer: IndentedStringWriter, _class: Hexarc.CSharpDom.C
     .writeLineNoTabs()
     .writeLine(ScopeTokens.open)
     .indent();
-}
-
-function emitAttributes(writer: IndentedStringWriter, _class: Hexarc.CSharpDom.Class) {
-  const { attributes } = _class;
-  AttributeEmitter.emitMany(writer, attributes);
-}
-
-function emitFields(writer: IndentedStringWriter, _class: Hexarc.CSharpDom.Class) {
-  const { fields } = _class;
-  FieldEmitter.emitMany(writer, fields, true);
-}
-
-function emitProperties(writer: IndentedStringWriter, _class: Hexarc.CSharpDom.Class) {
-  const { properties, fields } = _class;
-  PropertyEmitter.emitMany(writer, properties, (fields == null || fields.length === 1));
-}
-
-function emitMethods(writer: IndentedStringWriter, _class: Hexarc.CSharpDom.Class) {
-  const { methods, properties } = _class;
-  MethodEmitter.emitMany(writer, methods, (properties == null || properties.length === 1));
-}
-
-function emitEnd(writer: IndentedStringWriter, isLast?: boolean) {
-  writer
-    .unindent()
-    .writeLine(ScopeTokens.close);
-  if (!isLast) writer.writeLine();
 }

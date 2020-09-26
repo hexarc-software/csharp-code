@@ -1,9 +1,10 @@
 import * as fs from "fs";
+import * as path from "path";
 import * as CSharpDom from "../lib";
 
 
 const codeUnit: Hexarc.CSharpDom.CodeUnit = {
-  name: "Test.cs",
+  name: "all.cs",
   namespaces: [{
     path: ["Hexarc", "Api"],
     classes: [{
@@ -156,4 +157,4 @@ const codeUnit: Hexarc.CSharpDom.CodeUnit = {
   }]
 };
 
-fs.writeFileSync(codeUnit.name, CSharpDom.emit(codeUnit));
+fs.writeFileSync(path.join("tests", codeUnit.name), CSharpDom.emit(codeUnit));

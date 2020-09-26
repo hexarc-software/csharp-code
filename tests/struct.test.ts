@@ -5,12 +5,11 @@ import * as CSharpDom from "../lib";
 
 // Create a C# code unit that represents a file with a POCO class
 const codeUnit: Hexarc.CSharpDom.CodeUnit = {
-  name: "poco.cs",
+  name: "struct.cs",
   namespaces: [{
     path: ["Hexarc", "Geometry"],
-    classes: [{
+    structs: [{
       access: "public",
-      modifier: "sealed",
       name: "Point2D",
       properties: [{
         access: "public",

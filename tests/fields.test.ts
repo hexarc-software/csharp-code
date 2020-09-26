@@ -1,10 +1,11 @@
 import * as fs from "fs";
+import * as path from "path";
 import * as CSharpDom from "../lib";
 
 
-// Create a C# code unit that represents a file with a POCO class
+// Test fields generation
 const codeUnit: Hexarc.CSharpDom.CodeUnit = {
-  name: "Fields.cs",
+  name: "fields.cs",
   namespaces: [{
     path: ["Hexarc", "Geometry"],
     classes: [{
@@ -41,4 +42,4 @@ const codeUnit: Hexarc.CSharpDom.CodeUnit = {
 };
 
 // Generate a C# source file from the code uint
-fs.writeFileSync(codeUnit.name, CSharpDom.emit(codeUnit));
+fs.writeFileSync(path.join("tests", codeUnit.name), CSharpDom.emit(codeUnit));

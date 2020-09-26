@@ -1,4 +1,5 @@
 /// <reference path="./attribute.d.ts" />
+/// <reference path="./struct.d.ts" />
 /// <reference path="./class.d.ts" />
 /// <reference path="./code_unit.d.ts" />
 /// <reference path="./common.d.ts" />
