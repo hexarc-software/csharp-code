@@ -1,4 +1,6 @@
 import { IndentedStringWriter } from "../utils/indented_string_writer";
+import * as ArrayUtils from "../utils/array_utils";
+
 import * as Keywords from "../tokens/keywords";
 import * as Delimiters from "../tokens/delimiters";
 import * as NamespaceTokens from "../tokens/namespace_tokens";
@@ -8,7 +10,7 @@ import * as TypeEmitter from "./type_emitter";
 
 
 export function emitMany(writer: IndentedStringWriter, namespaces: Hexarc.CSharpDom.Namespace[] | undefined) {
-  if (namespaces == null || namespaces.length === 0) return;
+  if (ArrayUtils.isFalsy(namespaces)) return;
   namespaces.forEach(ns => emitOne(writer, ns));
 }
 

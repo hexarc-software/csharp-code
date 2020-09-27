@@ -1,4 +1,5 @@
 import { IndentedStringWriter } from "../utils/indented_string_writer";
+import * as ArrayUtils from "../utils/array_utils";
 
 import * as Keywords from "../tokens/keywords";
 import * as Delimiters from "../tokens/delimiters";
@@ -14,9 +15,9 @@ import * as MethodEmitter from "./method_emitter";
 
 
 export function emit(writer: IndentedStringWriter, _class: Hexarc.CSharpDom.ClassType) {
-  const noFields = _class.fields == null || _class.fields.length === 0;
-  const noProperties = _class.properties == null || _class.properties.length === 0;
-  const noConstructors = _class.constructors == null || _class.constructors.length === 0;
+  const noFields = ArrayUtils.isFalsy(_class.fields);
+  const noProperties = ArrayUtils.isFalsy(_class.properties);
+  const noConstructors = ArrayUtils.isFalsy(_class.constructors);
 
   AttributeEmitter.emitMany(writer, _class.attributes);
   emitDefinition(writer, _class);
@@ -55,4 +56,3 @@ function emitEnd(writer: IndentedStringWriter) {
     .unindent()
     .writeLine(ScopeTokens.close);
 }
-

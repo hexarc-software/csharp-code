@@ -1,9 +1,10 @@
 import { IndentedStringWriter } from "../utils/indented_string_writer";
+import * as ArrayUtils from "../utils/array_utils";
 import * as AttributeTokens from "../tokens/attribute_tokens";
 
 
 export function emitMany(writer: IndentedStringWriter, attributes: Hexarc.CSharpDom.Attribute[] | undefined) {
-  if (attributes == null || attributes.length === 0) return;
+  if (ArrayUtils.isFalsy(attributes)) return;
   attributes.forEach(a => emitOne(writer, a));
 }
 

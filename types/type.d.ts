@@ -32,8 +32,15 @@ declare namespace Hexarc.CSharpDom {
     readonly kind: "struct";
   }
 
+  interface EnumMember {
+    readonly attributes?: Attribute[];
+    readonly name: string;
+    readonly value?: string;
+  }
+
   interface EnumType extends GeneralType {
     readonly kind: "enum";
+    readonly members?: EnumMember[];
   }
 
   interface InterfaceType extends GeneralType, PartialType, GenericableType {

@@ -1,14 +1,17 @@
 import { IndentedStringWriter } from "../utils/indented_string_writer";
+import * as ArrayUtils from "../utils/array_utils";
+
 import * as Signs from "../tokens/signs";
 import * as Delimiters from "../tokens/delimiters";
 import * as ScopeTokens from "../tokens/scope_tokens";
 import * as PropertyTokens from "../tokens/property_tokens";
 import * as TypeReferenceTokens from "../tokens/type_reference_tokens";
+
 import * as AttributeEmitter from "./attribute_emitter";
 
 
 export function emitMany(writer: IndentedStringWriter, properties: Hexarc.CSharpDom.Property[] | undefined, isFirst?: boolean) {
-  if (properties == null || properties.length === 0) return;
+  if (ArrayUtils.isFalsy(properties)) return;
   if (!isFirst) writer.writeLine();
   properties.forEach((p, i, arr) => emitOne(writer, p, i === arr.length - 1));
 }

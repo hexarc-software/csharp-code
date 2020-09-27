@@ -1,12 +1,13 @@
 import { IndentedStringWriter } from "../utils/indented_string_writer";
+import * as ArrayUtils from "../utils/array_utils";
+
 import * as Keywords from "../tokens/keywords";
 import * as Delimiters from "../tokens/delimiters";
 import * as NamespaceTokens from "../tokens/namespace_tokens";
 
 
 export function emitMany(writer: IndentedStringWriter, imports: Hexarc.CSharpDom.NamespaceImport[] | undefined) {
-  if (imports == null || imports.length === 0) return;
-
+  if (ArrayUtils.isFalsy(imports)) return;
   imports.forEach(x => emitOne(writer, x));
   writer.writeLine();
 }

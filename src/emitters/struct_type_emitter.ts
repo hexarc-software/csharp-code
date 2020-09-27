@@ -1,4 +1,5 @@
 import { IndentedStringWriter } from "../utils/indented_string_writer";
+import * as ArrayUtils from "../utils/array_utils";
 
 import * as Keywords from "../tokens/keywords";
 import * as Delimiters from "../tokens/delimiters";
@@ -13,9 +14,9 @@ import * as MethodEmitter from "./method_emitter";
 
 
 export function emit(writer: IndentedStringWriter, struct: Hexarc.CSharpDom.StructType) {
-  const noFields = struct.fields == null || struct.fields.length === 0;
-  const noProperties = struct.properties == null || struct.properties.length === 0;
-  const noConstructors = struct.constructors == null || struct.constructors.length === 0;
+  const noFields = ArrayUtils.isFalsy(struct.fields);
+  const noProperties = ArrayUtils.isFalsy(struct.properties);
+  const noConstructors = ArrayUtils.isFalsy(struct.constructors);
 
   AttributeEmitter.emitMany(writer, struct.attributes);
   emitDefinition(writer, struct);

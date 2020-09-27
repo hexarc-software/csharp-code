@@ -12,3 +12,6 @@ node tests/struct.test.js
 
 npx tsc tests/constructor.test.ts
 node tests/constructor.test.js
+
+npx tsc tests/enum.test.ts
+node tests/enum.test.js
