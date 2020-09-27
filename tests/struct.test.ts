@@ -8,7 +8,8 @@ const codeUnit: Hexarc.CSharpDom.CodeUnit = {
   name: "struct.cs",
   namespaces: [{
     path: ["Hexarc", "Geometry"],
-    structs: [{
+    types: [{
+      kind: "struct",
       access: "public",
       name: "Point2D",
       properties: [{

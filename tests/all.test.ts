@@ -7,7 +7,8 @@ const codeUnit: Hexarc.CSharpDom.CodeUnit = {
   name: "all.cs",
   namespaces: [{
     path: ["Hexarc", "Api"],
-    classes: [{
+    types: [{
+      kind: "class",
       modifier: "sealed",
       access: "public",
       name: "Matrix2x2",
@@ -27,6 +28,7 @@ const codeUnit: Hexarc.CSharpDom.CodeUnit = {
         name: "y"
       }]
     }, {
+      kind: "class",
       attributes: [{
         type: {
           namespace: ["Microsoft", "AspNetCore", "Mvc"],
@@ -42,7 +44,7 @@ const codeUnit: Hexarc.CSharpDom.CodeUnit = {
       isPartial: true,
       modifier: "sealed",
       name: "Point",
-      baseClass: {
+      baseType: {
         namespace: "System",
         name: "Object"
       },
@@ -99,10 +101,12 @@ const codeUnit: Hexarc.CSharpDom.CodeUnit = {
         name: "Y"
       }]
     }, {
+      kind: "class",
       access: "public",
       modifier: "static",
       name: "PointFactory"
     }, {
+      kind: "class",
       access: "internal",
       modifier: "abstract",
       name: "PrinterBase",
@@ -143,6 +147,7 @@ const codeUnit: Hexarc.CSharpDom.CodeUnit = {
         }
       }]
     }, {
+      kind: "class",
       access: "public",
       modifier: "abstract",
       name: "KeyValue",

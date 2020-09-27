@@ -1,30 +1,36 @@
 import { IndentedStringWriter } from "../utils/indented_string_writer";
-import * as ScopeTokens from "../tokens/scope_tokens";
-import * as AttributeEmitter from "./attribute_emitter";
-import * as FieldEmitter from "./field_emitter";
-import * as PropertyEmitter from "./property_emitter";
-import * as MethodEmitter from "./method_emitter";
+import * as ClassTypeEmitter from "./class_type_emitter";
+import * as StructTypeEmitter from "./struct_type_emitter";
+import * as EnumTypeEmitter from "./enum_type_emitter";
+import * as InterfaceTypeEmitter from "./interface_type_emitter";
+import * as DelegateTypeEmitter from "./delegate_type_emitter";
 
 
-export function emitAttributes(writer: IndentedStringWriter, attributes: Hexarc.CSharpDom.Attribute[] | undefined) {
-  AttributeEmitter.emitMany(writer, attributes);
+export function emitMany(writer: IndentedStringWriter, types: Hexarc.CSharpDom.Type[] | undefined) {
+  if (types == null || types.length === 0) return;
+
+  types.forEach((x, i, arr) => emitOne(writer, x, i === arr.length - 1));
 }
 
-export function emitFields(writer: IndentedStringWriter, fields: Hexarc.CSharpDom.Field[] | undefined) {
-  FieldEmitter.emitMany(writer, fields, true);
-}
-
-export function emitProperties(writer: IndentedStringWriter, properties: Hexarc.CSharpDom.Property[] | undefined, fields: Hexarc.CSharpDom.Field[] | undefined) {
-  PropertyEmitter.emitMany(writer, properties, (fields == null || fields.length === 0));
-}
-
-export function emitMethods(writer: IndentedStringWriter, methods: Hexarc.CSharpDom.Method[] | undefined, properties: Hexarc.CSharpDom.Property[] | undefined) {
-  MethodEmitter.emitMany(writer, methods, (properties == null || properties.length === 0));
-}
-
-export function emitEnd(writer: IndentedStringWriter, isLast?: boolean) {
-  writer
-    .unindent()
-    .writeLine(ScopeTokens.close);
+export function emitOne(writer: IndentedStringWriter, type: Hexarc.CSharpDom.Type, isLast?: boolean) {
+  switch (type.kind) {
+    case "class":
+      ClassTypeEmitter.emit(writer, type);
+      break;
+    case "struct":
+      StructTypeEmitter.emit(writer, type);
+      break;
+    case "enum":
+      EnumTypeEmitter.emit(writer, type);
+      break;
+    case "interface":
+      InterfaceTypeEmitter.emit(writer, type);
+      break;
+    case "delegate":
+      DelegateTypeEmitter.emit(writer, type);
+      break;
+    default:
+      throw new Error(`Not supported type ${JSON.stringify(type, null, 4)}`)
+  }
   if (!isLast) writer.writeLine();
 }

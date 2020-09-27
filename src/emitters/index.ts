@@ -1,8 +1,13 @@
 export * as AttributeEmitter from "./attribute_emitter";
-export * as ClassEmitter from "./class_emitter";
+export * as ClassTypeEmitter from "./class_type_emitter";
 export * as CodeUnitEmitter from "./code_unit_emitter";
+export * as DelegateTypeEmitter from "./delegate_type_emitter";
+export * as EnumTypeEmitter from "./enum_type_emitter";
 export * as FieldEmitter from "./field_emitter";
+export * as InterfaceTypeEmitter from "./interface_type_emitter";
 export * as MethodEmitter from "./method_emitter";
 export * as NamespaceEmitter from "./namespace_emitter";
 export * as NamespaceImportEmitter from "./namespace_import_emitter";
 export * as PropertyEmitter from "./property_emitter";
+export * as StructTypeEmitter from "./struct_type_emitter";
+export * as TypeEmitter from "./type_emitter";

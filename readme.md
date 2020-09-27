@@ -41,7 +41,8 @@ const codeUnit: Hexarc.CSharpDom.CodeUnit = {
   name: "Point2D.cs",
   namespaces: [{
     path: ["Hexarc", "Geometry"],
-    classes: [{
+    types: [{
+      kind: "class",
       access: "public",
       modifier: "sealed",
       name: "Point2D",

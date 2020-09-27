@@ -8,7 +8,8 @@ const codeUnit: Hexarc.CSharpDom.CodeUnit = {
   name: "poco.cs",
   namespaces: [{
     path: ["Hexarc", "Geometry"],
-    classes: [{
+    types: [{
+      kind: "class",
       access: "public",
       modifier: "sealed",
       name: "Point2D",

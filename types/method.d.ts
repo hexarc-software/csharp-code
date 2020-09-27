@@ -10,6 +10,13 @@ declare namespace Hexarc.CSharpDom {
     readonly body: MethodBody;
   }
 
+  interface Constructor {
+    readonly access?: Access;
+    readonly modifier: Modifier;
+    readonly parameters?: MethodParameter[];
+    readonly body: MethodBody;
+  }
+
   interface MethodBody {
     readonly statements: string[];
   }
