@@ -1,10 +1,10 @@
 Microsoft C# source code generation based on the language document object model
 ======================================================
 
-[![Version](http://img.shields.io/npm/v/csharp-dom.svg)](https://www.npmjs.org/package/@hexarc/csharp-dom)
+[![Version](http://img.shields.io/npm/v/@hexarc/csharp-dom.svg)](https://www.npmjs.org/package/@hexarc/csharp-dom)
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://badges.mit-license.org)
-[![Downloads](http://img.shields.io/npm/dm/csharp-dom.svg)](https://npmjs.org/package/@hexarc/csharp-dom)
-[![Downloads](http://img.shields.io/npm/dt/csharp-dom.svg)](https://npmjs.org/package/@hexarc/csharp-dom)
+[![Downloads](http://img.shields.io/npm/dm/@hexarc/csharp-dom.svg)](https://npmjs.org/package/@hexarc/csharp-dom)
+[![Downloads](http://img.shields.io/npm/dt/@hexarc/csharp-dom.svg)](https://npmjs.org/package/@hexarc/csharp-dom)
 
 Generate Microsoft C# source files from any Node.js projects just using a simple and well-structured language document object model API.
 
