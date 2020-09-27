@@ -1,6 +1,7 @@
 /// <reference path="./attribute.d.ts" />
 /// <reference path="./code_unit.d.ts" />
 /// <reference path="./common.d.ts" />
+/// <reference path="./constructor.d.ts" />
 /// <reference path="./field.d.ts" />
 /// <reference path="./generic.d.ts" />
 /// <reference path="./method.d.ts" />

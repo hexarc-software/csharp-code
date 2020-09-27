@@ -9,3 +9,6 @@ node tests/all.test.js
 
 npx tsc tests/struct.test.ts
 node tests/struct.test.js
+
+npx tsc tests/constructor.test.ts
+node tests/constructor.test.js

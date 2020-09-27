@@ -9,18 +9,21 @@ import * as TypeReferenceTokens from "../tokens/type_reference_tokens";
 import * as AttributeEmitter from "./attribute_emitter";
 import * as FieldEmitter from "./field_emitter";
 import * as PropertyEmitter from "./property_emitter";
+import * as ConstructorEmitter from "./constructor_emitter";
 import * as MethodEmitter from "./method_emitter";
 
 
 export function emit(writer: IndentedStringWriter, _class: Hexarc.CSharpDom.ClassType) {
   const noFields = _class.fields == null || _class.fields.length === 0;
   const noProperties = _class.properties == null || _class.properties.length === 0;
+  const noConstructors = _class.constructors == null || _class.constructors.length === 0;
 
   AttributeEmitter.emitMany(writer, _class.attributes);
   emitDefinition(writer, _class);
   FieldEmitter.emitMany(writer, _class.fields, true);
   PropertyEmitter.emitMany(writer, _class.properties, noFields);
-  MethodEmitter.emitMany(writer, _class.methods, noFields && noProperties);
+  ConstructorEmitter.emitMany(writer, _class.name, _class.constructors, noFields && noProperties);
+  MethodEmitter.emitMany(writer, _class.methods, noFields && noProperties && noConstructors);
   emitEnd(writer);
 }
 
