@@ -5,6 +5,6 @@ import * as NamespaceImportEmitter from "./namespace_import_emitter";
 
 export function emit(writer: IndentedStringWriter, unit: Hexarc.CSharpDom.CodeUnit) {
   const { imports, namespaces } = unit;
-  imports && NamespaceImportEmitter.emitMany(writer, imports);
-  namespaces && NamespaceEmitter.emitMany(writer, namespaces);
+  NamespaceImportEmitter.emitMany(writer, imports);
+  NamespaceEmitter.emitMany(writer, namespaces);
 }

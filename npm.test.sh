@@ -15,3 +15,6 @@ node tests/constructor.test.js
 
 npx tsc tests/enum.test.ts
 node tests/enum.test.js
+
+npx tsc tests/delegate.test.ts
+node tests/delegate.test.js

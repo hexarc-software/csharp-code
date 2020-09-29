@@ -4,6 +4,7 @@
 /// <reference path="./constructor.d.ts" />
 /// <reference path="./field.d.ts" />
 /// <reference path="./generic.d.ts" />
+/// <reference path="./member.d.ts" />
 /// <reference path="./method.d.ts" />
 /// <reference path="./namespace.d.ts" />
 /// <reference path="./property.d.ts" />

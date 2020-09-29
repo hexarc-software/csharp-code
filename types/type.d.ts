@@ -20,12 +20,12 @@ declare namespace Hexarc.CSharpDom {
     readonly properties?: Property[];
     readonly constructors?: Constructor[];
     readonly methods?: Method[];
-    readonly baseType?: TypeReference;
   }
 
   interface ClassType extends ClassOrStructType {
     readonly kind: "class";
     readonly modifier?: Modifier;
+    readonly baseType?: TypeReference;
   }
 
   interface StructType extends ClassOrStructType {
@@ -49,6 +49,8 @@ declare namespace Hexarc.CSharpDom {
 
   interface DelegateType extends GeneralType, GenericableType {
     readonly kind: "delegate";
+    readonly result: TypeReference | "void";
+    readonly parameters?: MethodParameter[];
   }
 
   type Type = 

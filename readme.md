@@ -26,7 +26,7 @@ import * as CSharpDom from "@hexarc/csharp-dom";
 Or using the CommonJS module syntax:
 
 ```js
-const CSharpDom = require("@hexarch/csharp-dom");
+const CSharpDom = require("@hexarc/csharp-dom");
 ```
 
 ## Usage
