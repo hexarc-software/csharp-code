@@ -1,5 +1,4 @@
 import { IndentedStringWriter } from "../utils/indented_string_writer";
-import * as ArrayUtils from "../utils/array_utils";
 
 import * as Keywords from "../tokens/keywords";
 import * as Delimiters from "../tokens/delimiters";
@@ -8,13 +7,7 @@ import * as TypeReferenceTokens from "../tokens/type_reference_tokens";
 import * as AttributeEmitter from "./attribute_emitter";
 
 
-export function emitMany(writer: IndentedStringWriter, fields: Hexarc.CSharpDom.Field[] | undefined, isFirst?: boolean) {
-  if (ArrayUtils.isFalsy(fields)) return;
-  if (!isFirst) writer.writeLine();
-  fields.forEach((f, i, arr) => emitOne(writer, f, i === arr.length - 1));
-}
-
-export function emitOne(writer: IndentedStringWriter, field: Hexarc.CSharpDom.Field, isLast?: boolean) {
+export function emit(writer: IndentedStringWriter, field: Hexarc.CSharpDom.FieldMember) {
   const { access, isNew, isStatic, assignment, type, name, value } = field;
   const accessTokens = access ? [access, Delimiters.space] : [];
   const newTokens = isNew ? [Keywords._new, Delimiters.space] : [];
@@ -34,10 +27,9 @@ export function emitOne(writer: IndentedStringWriter, field: Hexarc.CSharpDom.Fi
       .write(...valueTokens)
       .write(Delimiters.semicolon)
     .writeLineNoTabs();
-  if (!isLast) writer.writeLine();
 }
 
-function emitAttributes(writer: IndentedStringWriter, field: Hexarc.CSharpDom.Field) {
+function emitAttributes(writer: IndentedStringWriter, field: Hexarc.CSharpDom.FieldMember) {
   const { attributes } = field;
   AttributeEmitter.emitMany(writer, attributes);
 }

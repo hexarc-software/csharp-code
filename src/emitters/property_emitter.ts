@@ -1,5 +1,4 @@
 import { IndentedStringWriter } from "../utils/indented_string_writer";
-import * as ArrayUtils from "../utils/array_utils";
 
 import * as Signs from "../tokens/signs";
 import * as Delimiters from "../tokens/delimiters";
@@ -10,13 +9,7 @@ import * as TypeReferenceTokens from "../tokens/type_reference_tokens";
 import * as AttributeEmitter from "./attribute_emitter";
 
 
-export function emitMany(writer: IndentedStringWriter, properties: Hexarc.CSharpDom.Property[] | undefined, isFirst?: boolean) {
-  if (ArrayUtils.isFalsy(properties)) return;
-  if (!isFirst) writer.writeLine();
-  properties.forEach((p, i, arr) => emitOne(writer, p, i === arr.length - 1));
-}
-
-export function emitOne(writer: IndentedStringWriter, property: Hexarc.CSharpDom.Property, isLast?: boolean) {
+export function emit(writer: IndentedStringWriter, property: Hexarc.CSharpDom.PropertyMember) {
   const { access, type, name, value } = property;
   const accessTokens = access ? [access, Delimiters.space] : [];
   const resultTokens = TypeReferenceTokens.emit(type);
@@ -33,10 +26,9 @@ export function emitOne(writer: IndentedStringWriter, property: Hexarc.CSharpDom
       .write(...bodyTokens)
       .write(...valueTokens)
     .writeLineNoTabs();
-  if (!isLast) writer.writeLine();
 }
 
-function emitAttributes(writer: IndentedStringWriter, property: Hexarc.CSharpDom.Property) {
+function emitAttributes(writer: IndentedStringWriter, property: Hexarc.CSharpDom.PropertyMember) {
   const { attributes } = property;
   AttributeEmitter.emitMany(writer, attributes);
 }

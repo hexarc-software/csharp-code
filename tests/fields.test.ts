@@ -13,26 +13,31 @@ const codeUnit: Hexarc.CSharpDom.CodeUnit = {
       access: "public",
       modifier: "sealed",
       name: "Foo",
-      fields: [{
+      members: [{
+        kind: "field",
         type: { namespace: "System", name: "Int32" },
         name: "bar00"
       }, {
+        kind: "field",
         access: "public",
         type: { namespace: "System", name: "Int32" },
         name: "bar01",
         value: "2"
       }, {
+        kind: "field",
         access: "public",
         isStatic: true,
         type: { namespace: "System", name: "Int32" },
         name: "bar02"
       }, {
+        kind: "field",
         access: "public",
         type: { namespace: "System", name: "Single" },
         assignment: "const",
         name: "bar03",
         value: "3.0f"
       }, {
+        kind: "field",
         access: "private",
         isNew: true,
         type: { namespace: "System", name: "Int32" },

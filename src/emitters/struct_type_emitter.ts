@@ -7,23 +7,13 @@ import * as GenericTokens from "../tokens/generic_tokens";
 import * as ScopeTokens from "../tokens/scope_tokens";
 
 import * as AttributeEmitter from "./attribute_emitter";
-import * as FieldEmitter from "./field_emitter";
-import * as PropertyEmitter from "./property_emitter";
-import * as ConstructorEmitter from "./constructor_emitter";
-import * as MethodEmitter from "./method_emitter";
+import * as MemberEmitter from "./member_emitter";
 
 
 export function emit(writer: IndentedStringWriter, struct: Hexarc.CSharpDom.StructType) {
-  const noFields = ArrayUtils.isFalsy(struct.fields);
-  const noProperties = ArrayUtils.isFalsy(struct.properties);
-  const noConstructors = ArrayUtils.isFalsy(struct.constructors);
-
   AttributeEmitter.emitMany(writer, struct.attributes);
   emitDefinition(writer, struct);
-  FieldEmitter.emitMany(writer, struct.fields, true);
-  PropertyEmitter.emitMany(writer, struct.properties, noFields);
-  ConstructorEmitter.emitMany(writer, struct.name, struct.constructors, noFields && noProperties);
-  MethodEmitter.emitMany(writer, struct.methods, noFields && noProperties && noConstructors);
+  MemberEmitter.emitMany(writer, struct.name, struct.members);
   emitEnd(writer);
 }
 

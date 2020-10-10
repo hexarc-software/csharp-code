@@ -12,7 +12,8 @@ const codeUnit: Hexarc.CSharpDom.CodeUnit = {
       modifier: "sealed",
       access: "public",
       name: "Matrix2x2",
-      fields: [{
+      members: [{
+        kind: "field",
         access: "public",
         type: {
           namespace: "System",
@@ -20,6 +21,7 @@ const codeUnit: Hexarc.CSharpDom.CodeUnit = {
         },
         name: "x"
       }, {
+        kind: "field",
         access: "public",
         type: {
           namespace: "System",
@@ -48,7 +50,8 @@ const codeUnit: Hexarc.CSharpDom.CodeUnit = {
         namespace: "System",
         name: "Object"
       },
-      methods: [{
+      members: [{
+        kind: "method",
         access: "public",
         name: "Sum",
         result: { namespace: "System", name: "Int32" },
@@ -65,6 +68,7 @@ const codeUnit: Hexarc.CSharpDom.CodeUnit = {
           ]
         }
       }, {
+        kind: "method",
         access: "public",
         name: "Print",
         result: "void",
@@ -77,8 +81,8 @@ const codeUnit: Hexarc.CSharpDom.CodeUnit = {
             "System.Console.WriteLine(x);"
           ]
         }
-      }],
-      properties: [{
+      }, {
+        kind: "property",
         attributes: [{
           type: {
             namespace: ["System"],
@@ -96,6 +100,7 @@ const codeUnit: Hexarc.CSharpDom.CodeUnit = {
         type: { namespace: "System", name: "Int32" },
         name: "X"
       }, {
+        kind: "property",
         access: "public",
         type: { namespace: "System", name: "Int32" },
         name: "Y"
@@ -115,7 +120,8 @@ const codeUnit: Hexarc.CSharpDom.CodeUnit = {
         name: "T",
         modifier: "in"
       }],
-      methods: [{
+      members: [{
+        kind: "method",
         access: "public",
         name: "Print",
         result: {
@@ -129,6 +135,7 @@ const codeUnit: Hexarc.CSharpDom.CodeUnit = {
           ]
         }
       }, {
+        kind: "method",
         access: "public",
         name: "Any",
         result: {

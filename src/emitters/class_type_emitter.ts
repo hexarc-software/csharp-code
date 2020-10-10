@@ -8,23 +8,13 @@ import * as ScopeTokens from "../tokens/scope_tokens";
 import * as TypeReferenceTokens from "../tokens/type_reference_tokens";
 
 import * as AttributeEmitter from "./attribute_emitter";
-import * as FieldEmitter from "./field_emitter";
-import * as PropertyEmitter from "./property_emitter";
-import * as ConstructorEmitter from "./constructor_emitter";
-import * as MethodEmitter from "./method_emitter";
+import * as MemberEmitter from "./member_emitter";
 
 
 export function emit(writer: IndentedStringWriter, _class: Hexarc.CSharpDom.ClassType) {
-  const noFields = ArrayUtils.isFalsy(_class.fields);
-  const noProperties = ArrayUtils.isFalsy(_class.properties);
-  const noConstructors = ArrayUtils.isFalsy(_class.constructors);
-
   AttributeEmitter.emitMany(writer, _class.attributes);
   emitDefinition(writer, _class);
-  FieldEmitter.emitMany(writer, _class.fields, true);
-  PropertyEmitter.emitMany(writer, _class.properties, noFields);
-  ConstructorEmitter.emitMany(writer, _class.name, _class.constructors, noFields && noProperties);
-  MethodEmitter.emitMany(writer, _class.methods, noFields && noProperties && noConstructors);
+  MemberEmitter.emitMany(writer, _class.name, _class.members);
   emitEnd(writer);
 }
 

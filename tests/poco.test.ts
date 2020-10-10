@@ -13,12 +13,14 @@ const codeUnit: Hexarc.CSharpDom.CodeUnit = {
       access: "public",
       modifier: "sealed",
       name: "Point2D",
-      properties: [{
+      members: [{
+        kind: "property",
         access: "public",
         type: { namespace: "System", name: "Single" },
         name: "X",
         value: "default"
       }, {
+        kind: "property",
         access: "public",
         type: { namespace: "System", name: "Single" },
         name: "Y",

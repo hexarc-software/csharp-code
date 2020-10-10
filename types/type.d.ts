@@ -16,10 +16,7 @@ declare namespace Hexarc.CSharpDom {
   }
 
   interface ClassOrStructType extends GeneralType, PartialType, GenericableType {
-    readonly fields?: Field[];
-    readonly properties?: Property[];
-    readonly constructors?: Constructor[];
-    readonly methods?: Method[];
+    readonly members?: Member[];
   }
 
   interface ClassType extends ClassOrStructType {
