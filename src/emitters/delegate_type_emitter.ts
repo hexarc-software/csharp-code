@@ -5,26 +5,23 @@ import * as Keywords from "../tokens/keywords";
 import * as TypeReferenceTokens from "../tokens/type_reference_tokens";
 import * as GenericTokens from "../tokens/generic_tokens";
 import * as MethodParameterTokens from "../tokens/method_parameter_tokens";
+import * as ModifierTokens from "../tokens/modifier_tokens";
 
 import * as AttributeEmitter from "./attribute_emitter";
 
 
 export function emit(writer: IndentedStringWriter, delegate: Hexarc.CSharpDom.DelegateType) {
   const { attributes, access, result, name, generics, parameters } = delegate;
-  const accessTokens = access ? [access, Delimiters.space] : [];
-  const resultTokens = TypeReferenceTokens.emit(result);
-  const genericTokens = GenericTokens.emit(generics);
-  const methodParameterTokens = MethodParameterTokens.emit(parameters);
   AttributeEmitter.emitMany(writer, attributes);
   writer
     .outputTabs()
-      .write(...accessTokens)
+      .write(...ModifierTokens.forAccess(access))
       .write(Keywords.delegate, Delimiters.space)
-      .write(...resultTokens)
+      .write(...TypeReferenceTokens.emit(result))
       .write(Delimiters.space)
       .write(name)
-      .write(...genericTokens)
-      .write(...methodParameterTokens)
+      .write(...GenericTokens.emit(generics))
+      .write(...MethodParameterTokens.emit(parameters))
       .write(Delimiters.semicolon)
     .writeLineNoTabs()
 }

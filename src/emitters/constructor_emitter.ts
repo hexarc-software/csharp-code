@@ -1,9 +1,8 @@
 import { IndentedStringWriter } from "../utils/indented_string_writer";
 
-import * as Delimiters from "../tokens/delimiters";
-import * as Keywords from "../tokens/keywords";
 import * as ScopeTokens from "../tokens/scope_tokens";
 import * as MethodParameterTokens from "../tokens/method_parameter_tokens";
+import * as ModifierTokens from "../tokens/modifier_tokens";
 
 
 export function emit(writer: IndentedStringWriter, typeName: string, constructor: Hexarc.CSharpDom.ConstructorMember) {
@@ -14,15 +13,12 @@ export function emit(writer: IndentedStringWriter, typeName: string, constructor
 
 function emitDefinition(writer: IndentedStringWriter, typeName: string, constructor: Hexarc.CSharpDom.ConstructorMember) {
   const { access, isStatic, parameters } = constructor;
-  const accessTokens = access ? [access, Delimiters.space] : [];
-  const staticTokens = isStatic ? [Keywords._static, Delimiters.space] : [];
-  const methodParameterTokens = MethodParameterTokens.emit(parameters);
   writer
     .outputTabs()
-      .write(...accessTokens)
-      .write(...staticTokens)
+      .write(...ModifierTokens.forAccess(access))
+      .write(...ModifierTokens.forStatic(isStatic))
       .write(typeName)
-      .write(...methodParameterTokens)
+      .write(...MethodParameterTokens.emit(parameters))
     .writeLineNoTabs()
     .writeLine(ScopeTokens.open)
     .indent();

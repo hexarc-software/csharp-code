@@ -5,25 +5,23 @@ import * as Delimiters from "../tokens/delimiters";
 import * as ScopeTokens from "../tokens/scope_tokens";
 import * as PropertyTokens from "../tokens/property_tokens";
 import * as TypeReferenceTokens from "../tokens/type_reference_tokens";
+import * as ModifierTokens from "../tokens/modifier_tokens";
 
 import * as AttributeEmitter from "./attribute_emitter";
 
 
 export function emit(writer: IndentedStringWriter, property: Hexarc.CSharpDom.PropertyMember) {
   const { access, type, name, value } = property;
-  const accessTokens = access ? [access, Delimiters.space] : [];
-  const resultTokens = TypeReferenceTokens.emit(type);
-  const bodyTokens = emitBody();
   const valueTokens = value != null ? [Delimiters.space, Signs.equal, Delimiters.space, value, Delimiters.semicolon] : [];
   emitAttributes(writer, property);
   writer
     .outputTabs()
-      .write(...accessTokens)
-      .write(...resultTokens)
+      .write(...ModifierTokens.forAccess(access))
+      .write(...TypeReferenceTokens.emit(type))
       .write(Delimiters.space)
       .write(name)
       .write(Delimiters.space)
-      .write(...bodyTokens)
+      .write(...emitBody())
       .write(...valueTokens)
     .writeLineNoTabs();
 }

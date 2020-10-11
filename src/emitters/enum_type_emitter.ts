@@ -5,6 +5,7 @@ import * as Keywords from "../tokens/keywords";
 import * as Delimiters from "../tokens/delimiters";
 import * as Signs from "../tokens/signs";
 import * as ScopeTokens from "../tokens/scope_tokens";
+import * as ModifierTokens from "../tokens/modifier_tokens";
 
 import * as AttributeEmitter from "./attribute_emitter";
 
@@ -18,12 +19,10 @@ export function emit(writer: IndentedStringWriter, _enum: Hexarc.CSharpDom.EnumT
 
 function emitDefinition(writer: IndentedStringWriter, _enum: Hexarc.CSharpDom.EnumType) {
   const { access, isNew, name } = _enum;
-  const accessTokens = access ? [access, Delimiters.space] : [];
-  const newTokens = isNew ? [Keywords._new, Delimiters.space] : [];
   writer
     .outputTabs()
-      .write(...accessTokens)
-      .write(...newTokens)
+      .write(...ModifierTokens.forAccess(access))
+      .write(...ModifierTokens.forNew(isNew))
       .write(Keywords._enum, Delimiters.space, name)
     .writeLineNoTabs()
     .writeLine(ScopeTokens.open)

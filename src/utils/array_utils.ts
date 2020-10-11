@@ -5,3 +5,9 @@ export function isTruthy<T>(array: T[] | undefined): array is T[] {
 export function isFalsy<T>(array: T[] | undefined): array is undefined {
   return !isTruthy(array);
 }
+
+function emptyFactory<T>(): <T>() => readonly T[] {
+  return () => [];
+}
+
+export const empty = emptyFactory();

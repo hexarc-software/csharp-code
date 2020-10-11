@@ -5,6 +5,7 @@ import * as ScopeTokens from "../tokens/scope_tokens";
 import * as GenericTokens from "../tokens/generic_tokens";
 import * as TypeReferenceTokens from "../tokens/type_reference_tokens";
 import * as MethodParameterTokens from "../tokens/method_parameter_tokens";
+import * as ModifierTokens from "../tokens/modifier_tokens";
 
 
 export function emit(writer: IndentedStringWriter, method: Hexarc.CSharpDom.MethodMember) {
@@ -15,20 +16,15 @@ export function emit(writer: IndentedStringWriter, method: Hexarc.CSharpDom.Meth
 
 function emitDefinition(writer: IndentedStringWriter, method: Hexarc.CSharpDom.MethodMember) {
   const { access, modifier, result, name, generics, parameters } = method;
-  const accessTokens = access ? [access, Delimiters.space] : [];
-  const modifierTokens = modifier ? [modifier, Delimiters.space] : [];
-  const resultTokens = TypeReferenceTokens.emit(result);
-  const genericTokens = GenericTokens.emit(generics);
-  const methodParameterTokens = MethodParameterTokens.emit(parameters);
   writer
     .outputTabs()
-      .write(...accessTokens)
-      .write(...modifierTokens)
-      .write(...resultTokens)
+      .write(...ModifierTokens.forAccess(access))
+      .write(...ModifierTokens.forModifier(modifier))
+      .write(...TypeReferenceTokens.emit(result))
       .write(Delimiters.space)
       .write(name)
-      .write(...genericTokens)
-      .write(...methodParameterTokens)
+      .write(...GenericTokens.emit(generics))
+      .write(...MethodParameterTokens.emit(parameters))
     .writeLineNoTabs()
     .writeLine(ScopeTokens.open)
     .indent();
