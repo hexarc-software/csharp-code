@@ -1,4 +1,6 @@
+export * as AngleBrackets from "./angle_brackets";
 export * as AttributeTokens from "./attribute_tokens";
+export * as CurlyBraces from "./curly_braces";
 export * as Delimiters from "./delimiters";
 export * as GenericTokens from "./generic_tokens";
 export * as Keywords from "./keywords";
@@ -6,8 +8,6 @@ export * as MethodArgumentTokens from "./method_argument_tokens";
 export * as MethodParameterTokens from "./method_parameter_tokens";
 export * as NamespaceTokens from "./namespace_tokens";
 export * as NullableTokens from "./nullable_tokens";
+export * as Parentheses from "./parentheses";
 export * as PropertyTokens from "./property_tokens";
-export * as RoundBrackets from "./round_brackets";
-export * as ScopeTokens from "./scope_tokens";
-export * as SquareBrackets from "./square_brackets";
 export * as TypeReferenceTokens from "./type_reference_tokens";

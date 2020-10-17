@@ -4,7 +4,7 @@ import * as ArrayUtils from "../utils/array_utils";
 import * as Keywords from "../tokens/keywords";
 import * as Delimiters from "../tokens/delimiters";
 import * as NamespaceTokens from "../tokens/namespace_tokens";
-import * as ScopeTokens from "../tokens/scope_tokens";
+import * as CurlyBraces from "../tokens/curly_braces";
 import * as NamespaceImportEmitter from "./namespace_import_emitter";
 import * as TypeEmitter from "./type_emitter";
 
@@ -25,13 +25,13 @@ export function emitOne(writer: IndentedStringWriter, namespace: Hexarc.CSharpDo
 function emitDefinition( writer: IndentedStringWriter, path: string | string[]) {
   writer
     .writeLine(Keywords.namespace, Delimiters.space, ...NamespaceTokens.emit(path))
-    .writeLine(ScopeTokens.open)
+    .writeLine(CurlyBraces.open)
     .indent();
 }
 
 function emitEnd(writer: IndentedStringWriter) {
   writer
     .unindent()
-    .writeLine(ScopeTokens.close)
+    .writeLine(CurlyBraces.close)
     .writeLine();
 }

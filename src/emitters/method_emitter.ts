@@ -1,7 +1,7 @@
 import { IndentedStringWriter } from "../utils/indented_string_writer";
 
 import * as Delimiters from "../tokens/delimiters";
-import * as ScopeTokens from "../tokens/scope_tokens";
+import * as CurlyBraces from "../tokens/curly_braces";
 import * as GenericTokens from "../tokens/generic_tokens";
 import * as TypeReferenceTokens from "../tokens/type_reference_tokens";
 import * as MethodParameterTokens from "../tokens/method_parameter_tokens";
@@ -26,7 +26,7 @@ function emitDefinition(writer: IndentedStringWriter, method: Hexarc.CSharpDom.M
       .write(...GenericTokens.emit(generics))
       .write(...MethodParameterTokens.emit(parameters))
     .writeLineNoTabs()
-    .writeLine(ScopeTokens.open)
+    .writeLine(CurlyBraces.open)
     .indent();
 }
 
@@ -38,5 +38,5 @@ function emitBody(writer: IndentedStringWriter, method: Hexarc.CSharpDom.MethodM
 function emitEnd(writer: IndentedStringWriter) {
   writer
     .unindent()
-    .writeLine(ScopeTokens.close);
+    .writeLine(CurlyBraces.close);
 }

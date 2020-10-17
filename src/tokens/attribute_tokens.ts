@@ -5,10 +5,8 @@ import * as TypeReferenceTokens from "./type_reference_tokens";
 
 export function emit(attribute: Hexarc.CSharpDom.Attribute) {
   const { type, arguments: _arguments } = attribute;
-  return [
-    SquareBrackets.open,
+  return SquareBrackets.enclose([
     ...TypeReferenceTokens.emit(type),
-    ...MethodArgumentTokens.emit(_arguments),
-    SquareBrackets.close
-  ]
+    ...MethodArgumentTokens.emit(_arguments)
+  ]);
 }

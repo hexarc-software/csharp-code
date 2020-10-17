@@ -1,13 +1,12 @@
+import * as ArrayUtils from "../utils/array_utils";
 import * as Delimiters from "./delimiters";
+import * as AngleBrackets from "./angle_brackets";
 import * as TypeReferenceTokens from "./type_reference_tokens";
 
 
-export const open = "<";
-export const close = ">";
-
 export function emit(generics: Hexarc.CSharpDom.Generic[] | undefined) {
-  if (generics == null || generics.length === 0) return [];
-  return [open, ...precursors(generics), close];
+  if (ArrayUtils.isFalsy(generics)) return ArrayUtils.empty<string>();
+  else return AngleBrackets.enclose(precursors(generics));
 }
 
 function precursors(generics: Hexarc.CSharpDom.Generic[]) {

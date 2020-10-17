@@ -16,7 +16,7 @@ export function emit(path: string | string[] | undefined, isEndDot?: boolean): s
   }
 }
 
-function normalizePath(path: string | string[]) {
+function normalizePath(path: string | string[]): string[] {
   return typeof path === "string" ? [path] : path;
 }
 

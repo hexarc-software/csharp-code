@@ -3,7 +3,7 @@ import { IndentedStringWriter } from "../utils/indented_string_writer";
 import * as Keywords from "../tokens/keywords";
 import * as Delimiters from "../tokens/delimiters";
 import * as GenericTokens from "../tokens/generic_tokens";
-import * as ScopeTokens from "../tokens/scope_tokens";
+import * as CurlyBraces from "../tokens/curly_braces";
 import * as TypeReferenceTokens from "../tokens/type_reference_tokens";
 import * as ModifierTokens from "../tokens/modifier_tokens";
 
@@ -32,12 +32,12 @@ function emitDefinition(writer: IndentedStringWriter, _class: Hexarc.CSharpDom.C
       .write(...GenericTokens.emit(generics))
       .write(...extensionTokens)
     .writeLineNoTabs()
-    .writeLine(ScopeTokens.open)
+    .writeLine(CurlyBraces.open)
     .indent();
 }
 
 function emitEnd(writer: IndentedStringWriter) {
   writer
     .unindent()
-    .writeLine(ScopeTokens.close);
+    .writeLine(CurlyBraces.close);
 }

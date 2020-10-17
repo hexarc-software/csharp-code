@@ -4,7 +4,7 @@ import * as ArrayUtils from "../utils/array_utils";
 import * as Keywords from "../tokens/keywords";
 import * as Delimiters from "../tokens/delimiters";
 import * as Signs from "../tokens/signs";
-import * as ScopeTokens from "../tokens/scope_tokens";
+import * as CurlyBraces from "../tokens/curly_braces";
 import * as ModifierTokens from "../tokens/modifier_tokens";
 
 import * as AttributeEmitter from "./attribute_emitter";
@@ -25,7 +25,7 @@ function emitDefinition(writer: IndentedStringWriter, _enum: Hexarc.CSharpDom.En
       .write(...ModifierTokens.forNew(isNew))
       .write(Keywords._enum, Delimiters.space, name)
     .writeLineNoTabs()
-    .writeLine(ScopeTokens.open)
+    .writeLine(CurlyBraces.open)
     .indent();
 }
 
@@ -51,5 +51,5 @@ function emitMember(writer: IndentedStringWriter, member: Hexarc.CSharpDom.EnumM
 function emitEnd(writer: IndentedStringWriter) {
   writer
     .unindent()
-    .writeLine(ScopeTokens.close);
+    .writeLine(CurlyBraces.close);
 }

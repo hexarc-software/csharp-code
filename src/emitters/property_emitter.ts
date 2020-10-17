@@ -2,7 +2,7 @@ import { IndentedStringWriter } from "../utils/indented_string_writer";
 
 import * as Signs from "../tokens/signs";
 import * as Delimiters from "../tokens/delimiters";
-import * as ScopeTokens from "../tokens/scope_tokens";
+import * as CurlyBraces from "../tokens/curly_braces";
 import * as PropertyTokens from "../tokens/property_tokens";
 import * as TypeReferenceTokens from "../tokens/type_reference_tokens";
 import * as ModifierTokens from "../tokens/modifier_tokens";
@@ -33,10 +33,10 @@ function emitAttributes(writer: IndentedStringWriter, property: Hexarc.CSharpDom
 
 function emitBody() {
   return [
-    ScopeTokens.open, Delimiters.space, 
+    CurlyBraces.open, Delimiters.space, 
     ...emitGetter(), Delimiters.space,
     ...emitterSetter(), Delimiters.space,
-    ScopeTokens.close
+    CurlyBraces.close
   ];
 }
 
