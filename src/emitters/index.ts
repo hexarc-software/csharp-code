@@ -9,5 +9,6 @@ export * as MethodEmitter from "./method_emitter";
 export * as NamespaceEmitter from "./namespace_emitter";
 export * as NamespaceImportEmitter from "./namespace_import_emitter";
 export * as PropertyEmitter from "./property_emitter";
+export * as ScopeEmitter from "./scope_emitter";
 export * as StructTypeEmitter from "./struct_type_emitter";
 export * as TypeEmitter from "./type_emitter";

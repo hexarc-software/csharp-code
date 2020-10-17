@@ -1,6 +1,6 @@
 {
   "name": "@hexarc/csharp-dom",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Microsoft C# source code generation based on the language document object model",
   "main": "lib/index.js",
   "scripts": {
@@ -16,7 +16,7 @@
   "homepage": "https://github.com/hexarc-software/csharp-dom.git",
   "devDependencies": {
     "typescript": "^4.0.3",
-    "@types/node": "^14.11.2"
+    "@types/node": "^14.11.10"
   },
   "keywords": [
     "c#",
