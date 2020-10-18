@@ -6,14 +6,11 @@ import * as Parentheses from "./parentheses";
 
 export function emit(parameters: Hexarc.CSharpDom.MethodParameter[] | undefined) {
   const parameterTokens = ArrayUtils.isFalsy(parameters) ? ArrayUtils.empty<string>() : precursors(parameters);
-  return Parentheses.enclose(parameterTokens);
+  return Parentheses.enclose(...parameterTokens);
 }
 
 function precursors(parameters: Hexarc.CSharpDom.MethodParameter[]): readonly string[] {
-  return parameters
-    .map(p => precursor(p))
-    .flatMap((g, i, arr) => 
-      i === arr.length - 1 ? g : [...g, Delimiters.comma, Delimiters.space]);
+  return Delimiters.commaSeparated(...parameters.map(p => precursor(p)));
 }
 
 function precursor(parameter: Hexarc.CSharpDom.MethodParameter) {

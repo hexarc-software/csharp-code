@@ -11,3 +11,7 @@ function emptyFactory<T>(): <T>() => readonly T[] {
 }
 
 export const empty = emptyFactory();
+
+export function isLastIndex<T>(array: T[], index: number) {
+  return array.length - 1 === index;
+}

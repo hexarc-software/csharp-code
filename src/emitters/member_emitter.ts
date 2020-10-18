@@ -10,7 +10,7 @@ import * as TypeEmitter from "./type_emitter";
 
 export function emitMany(writer: IndentedStringWriter, typeName: string, members: Hexarc.CSharpDom.Member[] | undefined) {
   if (ArrayUtils.isFalsy(members)) return;
-  members.forEach((x, i, arr) => emitOne(writer, typeName, x, i === arr.length - 1));
+  members.forEach((x, i, arr) => emitOne(writer, typeName, x, ArrayUtils.isLastIndex(arr, i)));
 }
 
 export function emitOne(writer: IndentedStringWriter, typeName: string, member: Hexarc.CSharpDom.Member, isLast?: boolean) {

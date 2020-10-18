@@ -23,6 +23,6 @@ function emitDefinition(writer: IndentedStringWriter, typeName: string, construc
 }
 
 function emitBody(writer: IndentedStringWriter, constructor: Hexarc.CSharpDom.ConstructorMember) {
-  ScopeEmitter.emit(writer, writer => constructor.body.statements.forEach(s => writer.writeLine(s)));
-  
+  const { body } = constructor;
+  ScopeEmitter.emit(writer, writer => body.statements.forEach(s => writer.writeLine(s)));
 }

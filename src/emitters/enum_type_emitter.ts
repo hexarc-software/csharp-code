@@ -32,7 +32,7 @@ function emitBody(writer: IndentedStringWriter, _enum: Hexarc.CSharpDom.EnumType
 
 function emitMembers(writer: IndentedStringWriter, members: Hexarc.CSharpDom.EnumMember[] | undefined) {
   if (ArrayUtils.isFalsy(members)) return;
-  members.forEach((m, i, arr) => emitMember(writer, m, i === arr.length - 1));
+  members.forEach((m, i, arr) => emitMember(writer, m, ArrayUtils.isLastIndex(arr, i)));
 }
 
 function emitMember(writer: IndentedStringWriter, member: Hexarc.CSharpDom.EnumMember, isLast?: boolean) {

@@ -32,18 +32,17 @@ function emitAttributes(writer: IndentedStringWriter, property: Hexarc.CSharpDom
 }
 
 function emitBody() {
-  return [
-    CurlyBraces.open, Delimiters.space, 
-    ...emitGetter(), Delimiters.space,
-    ...emitterSetter(), Delimiters.space,
-    CurlyBraces.close
-  ];
+  return CurlyBraces.enclose(
+    Delimiters.space, ...emitGetter(),
+    Delimiters.space, ...emitSetter(), 
+    Delimiters.space
+  )
 }
 
 function emitGetter() {
   return [PropertyTokens.get, Delimiters.semicolon];
 }
 
-function emitterSetter() {
+function emitSetter() {
   return [PropertyTokens.set, Delimiters.semicolon];
 }

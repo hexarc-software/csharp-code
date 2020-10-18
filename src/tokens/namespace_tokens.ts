@@ -1,3 +1,4 @@
+import { ArrayUtils } from "../utils";
 import * as Delimiters from "./delimiters";
 
 
@@ -22,5 +23,5 @@ function normalizePath(path: string | string[]): string[] {
 
 function pickProjector(isEndDot: boolean | undefined) {
   if (isEndDot) return (x: string) => [x, Delimiters.dot];
-  else return (x: string, i: number, arr: string[]) => i === arr.length - 1 ? x : [x, Delimiters.dot];
+  else return (x: string, i: number, arr: string[]) => ArrayUtils.isLastIndex(arr, i) ? x : [x, Delimiters.dot];
 }

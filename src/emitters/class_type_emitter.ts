@@ -34,5 +34,6 @@ function emitDefinition(writer: IndentedStringWriter, _class: Hexarc.CSharpDom.C
 }
 
 function emitBody(writer: IndentedStringWriter, _class: Hexarc.CSharpDom.ClassType) {
-  ScopeEmitter.emit(writer, writer =>  MemberEmitter.emitMany(writer, _class.name, _class.members));
+  const { name, members } = _class;
+  ScopeEmitter.emit(writer, writer => MemberEmitter.emitMany(writer, name, members));
 }

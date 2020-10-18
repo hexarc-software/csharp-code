@@ -12,7 +12,7 @@ import * as TypeEmitter from "./type_emitter";
 
 export function emitMany(writer: IndentedStringWriter, namespaces: Hexarc.CSharpDom.Namespace[] | undefined) {
   if (ArrayUtils.isFalsy(namespaces)) return;
-  namespaces.forEach((ns, i, arr) => emitOne(writer, ns, i === arr.length - 1));
+  namespaces.forEach((ns, i, arr) => emitOne(writer, ns, ArrayUtils.isLastIndex(arr, i)));
 }
 
 export function emitOne(writer: IndentedStringWriter, namespace: Hexarc.CSharpDom.Namespace, isLast?: boolean) {

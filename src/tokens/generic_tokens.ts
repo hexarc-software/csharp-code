@@ -6,14 +6,11 @@ import * as TypeReferenceTokens from "./type_reference_tokens";
 
 export function emit(generics: Hexarc.CSharpDom.Generic[] | undefined) {
   if (ArrayUtils.isFalsy(generics)) return ArrayUtils.empty<string>();
-  else return AngleBrackets.enclose(precursors(generics));
+  else return AngleBrackets.enclose(...precursors(generics));
 }
 
 function precursors(generics: Hexarc.CSharpDom.Generic[]) {
-  return generics
-    .map(g => precursor(g))
-    .flatMap((g, i, arr) => 
-      i === arr.length - 1 ? g : [...g, Delimiters.comma, Delimiters.space]);
+  return Delimiters.commaSeparated(...generics.map(g => precursor(g)));
 }
 
 function precursor(generic: Hexarc.CSharpDom.Generic) {

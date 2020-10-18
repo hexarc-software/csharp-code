@@ -29,5 +29,6 @@ function emitDefinition(writer: IndentedStringWriter, struct: Hexarc.CSharpDom.S
 }
 
 function emitBody(writer: IndentedStringWriter, struct: Hexarc.CSharpDom.StructType) {
-  ScopeEmitter.emit(writer, writer => MemberEmitter.emitMany(writer, struct.name, struct.members));
+  const { name, members } = struct;
+  ScopeEmitter.emit(writer, writer => MemberEmitter.emitMany(writer, name, members));
 }

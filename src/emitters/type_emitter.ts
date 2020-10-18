@@ -10,7 +10,7 @@ import * as DelegateTypeEmitter from "./delegate_type_emitter";
 
 export function emitMany(writer: IndentedStringWriter, types: Hexarc.CSharpDom.Type[] | undefined) {
   if (ArrayUtils.isFalsy(types)) return;
-  types.forEach((x, i, arr) => emitOne(writer, x, i === arr.length - 1));
+  types.forEach((x, i, arr) => emitOne(writer, x, ArrayUtils.isLastIndex(arr, i)));
 }
 
 export function emitOne(writer: IndentedStringWriter, type: Hexarc.CSharpDom.Type, isLast?: boolean) {
