@@ -23,5 +23,5 @@ export function emit(writer: IndentedStringWriter, delegate: Hexarc.CSharpDom.De
       .write(...GenericTokens.emit(generics))
       .write(...MethodParameterTokens.emit(parameters))
       .write(Delimiters.semicolon)
-    .writeLineNoTabs()
+    .writeLineNoTabs();
 }

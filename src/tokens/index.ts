@@ -3,6 +3,7 @@ export * as AttributeTokens from "./attribute_tokens";
 export * as CurlyBraces from "./curly_braces";
 export * as Delimiters from "./delimiters";
 export * as GenericTokens from "./generic_tokens";
+export * as InheritImplementTokes from "./inherit_implement_tokens";
 export * as Keywords from "./keywords";
 export * as MethodArgumentTokens from "./method_argument_tokens";
 export * as MethodParameterTokens from "./method_parameter_tokens";

@@ -164,7 +164,18 @@ const codeUnit: Hexarc.CSharpDom.CodeUnit = {
       }, {
         kind: "parameter",
         name: "TValue"
-      }]
+      }],
+      baseType: {
+        namespace: ["System", "Collections", "Generic"],
+        name: "Dictionary",
+        generics: [{
+          kind: "parameter",
+          name: "TKey"
+        }, {
+          kind: "parameter",
+          name: "TValue"
+        }]
+      }
     }]
   }]
 };

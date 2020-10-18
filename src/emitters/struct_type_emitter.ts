@@ -4,6 +4,7 @@ import * as Keywords from "../tokens/keywords";
 import * as Delimiters from "../tokens/delimiters";
 import * as GenericTokens from "../tokens/generic_tokens";
 import * as ModifierTokens from "../tokens/modifier_tokens";
+import * as InheritImplementTokens from "../tokens/inherit_implement_tokens";
 
 import * as AttributeEmitter from "./attribute_emitter";
 import * as ScopeEmitter from "./scope_emitter";
@@ -17,7 +18,7 @@ export function emit(writer: IndentedStringWriter, struct: Hexarc.CSharpDom.Stru
 }
 
 function emitDefinition(writer: IndentedStringWriter, struct: Hexarc.CSharpDom.StructType) {
-  const { access, isNew, isPartial, name, generics } = struct;
+  const { access, isNew, isPartial, name, generics, interfaces } = struct;
   writer
     .outputTabs()
       .write(...ModifierTokens.forAccess(access))
@@ -25,6 +26,7 @@ function emitDefinition(writer: IndentedStringWriter, struct: Hexarc.CSharpDom.S
       .write(...ModifierTokens.forPartial(isPartial))
       .write(Keywords.struct, Delimiters.space, name)
       .write(...GenericTokens.emit(generics))
+      .write(...InheritImplementTokens.emit(interfaces))
     .writeLineNoTabs();
 }
 
