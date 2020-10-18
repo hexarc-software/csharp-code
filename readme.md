@@ -10,7 +10,7 @@ Generate Microsoft C# source files from any Node.js projects just using a simple
 
 This package is designed for usage with TypeScript and provides extensive typings for the C# document object model.
 
-## Setup
+# Setup
 Install with npm:
 
 ```sh
@@ -29,14 +29,16 @@ Or using the CommonJS module syntax:
 const CSharpDom = require("@hexarc/csharp-dom");
 ```
 
-## Usage
-Generating a POCO class:
+# Examples
+* [Generate a POCO class](#generate-a-poco-class)
+* [Generate an enum](#generate-an-enum)
+
+## Generate a POCO class ##
 ```ts
 import * as fs from "fs";
 import * as CSharpDom from "@hexarc/csharp-dom";
 
 
-// Create a C# code unit that represents a file with a POCO class
 const codeUnit: Hexarc.CSharpDom.CodeUnit = {
   name: "Point2D.cs",
   namespaces: [{
@@ -61,11 +63,9 @@ const codeUnit: Hexarc.CSharpDom.CodeUnit = {
   }]
 };
 
-// Generate a C# source file from the code uint
 fs.writeFileSync(codeUnit.name, CSharpDom.emit(codeUnit));
 ```
 
-This code generates a `Point2D.cs` file with the `Point2D` POCO class:
 ```cs
 namespace Hexarc.Geometry
 {
@@ -74,6 +74,49 @@ namespace Hexarc.Geometry
         public System.Single X { get; set; }
         
         public System.Single Y { get; set; }
+    }
+}
+```
+
+## Generate an enum ##
+```ts
+import * as fs from "fs";
+import * as CSharpDom from "@hexarc/csharp-dom";
+
+
+const codeUnit: Hexarc.CSharpDom.CodeUnit = {
+  name: "enum.cs",
+  namespaces: [{
+    path: ["Hexarc", "Flags"],
+    types: [{
+      kind: "enum",
+      access: "public",
+      name: "Direction",
+      members: [{
+        name: "Up"
+      }, {
+        name: "Down"
+      }, {
+        name: "Left"
+      }, {
+        name: "Right"
+      }]
+    }]
+  }]
+};
+
+fs.writeFileSync(codeUnit.name, CSharpDom.emit(codeUnit));
+```
+
+```csharp
+namespace Hexarc.Flags
+{
+    public enum Direction
+    {
+        Up,
+        Down,
+        Left,
+        Right
     }
 }
 ```

@@ -3,7 +3,6 @@ import * as path from "path";
 import * as CSharpDom from "../lib";
 
 
-// Create a C# code unit that represents a file with a POCO class
 const codeUnit: Hexarc.CSharpDom.CodeUnit = {
   name: "enum.cs",
   namespaces: [{
