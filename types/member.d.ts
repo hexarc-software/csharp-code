@@ -26,6 +26,7 @@ declare namespace Hexarc.CSharpDom {
     readonly access?: Access;
     readonly isStatic?: boolean;
     readonly parameters?: MethodParameter[];
+    readonly invokeConstructor?: InvokeConstructor;
     readonly body: MethodBody;
   }
 
@@ -33,6 +34,7 @@ declare namespace Hexarc.CSharpDom {
     readonly kind: "method";
     readonly access?: Access;
     readonly modifier?: Modifier;
+    readonly isAsync?: boolean;
     readonly result: TypeReference | "void";
     readonly name: string;
     readonly generics?: Generic[];

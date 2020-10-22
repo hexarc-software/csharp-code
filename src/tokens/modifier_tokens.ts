@@ -26,3 +26,7 @@ export function forAccess(access: Hexarc.CSharpDom.Access | undefined): readonly
 export function forAssignment(assignment: "const" | "readonly" | undefined): readonly string[] {
   return assignment ? [assignment, Delimiters.space] : ArrayUtils.empty();
 }
+
+export function forAsync(isAsync: boolean | undefined): readonly string[] {
+  return isAsync ? [Keywords.async, Delimiters.space] : ArrayUtils.empty();
+}

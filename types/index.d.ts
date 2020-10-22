@@ -5,5 +5,6 @@
 /// <reference path="./generic.d.ts" />
 /// <reference path="./member.d.ts" />
 /// <reference path="./namespace.d.ts" />
+/// <reference path="./statements.d.ts" />
 /// <reference path="./type_reference.d.ts" />
 /// <reference path="./type.d.ts" />

@@ -15,11 +15,12 @@ export function emit(writer: IndentedStringWriter, method: Hexarc.CSharpDom.Meth
 }
 
 function emitDefinition(writer: IndentedStringWriter, method: Hexarc.CSharpDom.MethodMember) {
-  const { access, modifier, result, name, generics, parameters } = method;
+  const { access, modifier, isAsync, result, name, generics, parameters } = method;
   writer
     .outputTabs()
       .write(...ModifierTokens.forAccess(access))
       .write(...ModifierTokens.forModifier(modifier))
+      .write(...ModifierTokens.forAsync(isAsync))
       .write(...TypeReferenceTokens.emit(result))
       .write(Delimiters.space)
       .write(name)
