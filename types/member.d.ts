@@ -3,7 +3,7 @@ declare namespace Hexarc.CSharpDom {
   interface FieldMember {
     readonly kind: "field";
     readonly attributes?: Attribute[];
-    readonly access?: Access;
+    readonly access?: Access | Access[];
     readonly isNew?: boolean;
     readonly isStatic?: boolean;
     readonly assignment?: "readonly" | "const";
@@ -23,7 +23,7 @@ declare namespace Hexarc.CSharpDom {
 
   interface ConstructorMember {
     readonly kind: "constructor";
-    readonly access?: Access;
+    readonly access?: Access | Access[];
     readonly isStatic?: boolean;
     readonly parameters?: MethodParameter[];
     readonly invokeConstructor?: InvokeConstructor;
@@ -32,7 +32,7 @@ declare namespace Hexarc.CSharpDom {
 
   interface MethodMember {
     readonly kind: "method";
-    readonly access?: Access;
+    readonly access?: Access | Access[];
     readonly modifier?: Modifier;
     readonly isAsync?: boolean;
     readonly result: TypeReference | "void";

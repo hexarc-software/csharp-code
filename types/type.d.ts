@@ -3,7 +3,7 @@ declare namespace Hexarc.CSharpDom {
   interface GeneralType {
     readonly attributes?: Attribute[];
     readonly isNew?: boolean;
-    readonly access?: Access;
+    readonly access?: Access | Access[];
     readonly name: string;
   }
 

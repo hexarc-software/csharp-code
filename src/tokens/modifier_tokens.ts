@@ -19,8 +19,10 @@ export function forModifier(modifier: Hexarc.CSharpDom.Modifier | undefined): re
   return modifier ? [modifier, Delimiters.space] : ArrayUtils.empty();
 }
 
-export function forAccess(access: Hexarc.CSharpDom.Access | undefined): readonly string[] {
-  return access ? [access, Delimiters.space] : ArrayUtils.empty();
+export function forAccess(access: Hexarc.CSharpDom.Access | Hexarc.CSharpDom.Access[] | undefined): readonly string[] {
+  if (access == null) return ArrayUtils.empty();
+  else if (Array.isArray(access)) return access.flatMap(x => [x, Delimiters.space]);
+  else return [access, Delimiters.space];
 }
 
 export function forAssignment(assignment: "const" | "readonly" | undefined): readonly string[] {

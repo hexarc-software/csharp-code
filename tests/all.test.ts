@@ -14,7 +14,7 @@ const codeUnit: Hexarc.CSharpDom.CodeUnit = {
       name: "Matrix2x2",
       members: [{
         kind: "field",
-        access: "public",
+        access: ["protected", "internal"],
         type: {
           namespace: "System",
           name: "Single"

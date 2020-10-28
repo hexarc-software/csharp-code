@@ -4,9 +4,7 @@ declare namespace Hexarc.CSharpDom {
     | "public"
     | "protected"
     | "internal"
-    | "protected internal"
-    | "private"
-    | "private protected";
+    | "private";
 
   type Modifier =
     | "sealed"
